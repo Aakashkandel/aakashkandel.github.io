@@ -1,13 +1,52 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Roboto:wght@400;700&display=swap');
+
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+  font-family: 'Roboto', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+  font-family: 'Source Code Pro', Menlo, Monaco, Consolas, 'Courier New', monospace;
+}
+
+.body-container {
+  max-width: 1200px;  
+  height: 100vh;        
+  margin:auto;     
+  padding: 50px 10px;   
+  box-sizing: border-box;
+}
+.max-screen{
+  max-width: 1200px;  
+  margin:auto;        
+  box-sizing: border-box;
+}
+
+.rounded-egg {
+  display: block;
+  width: 400px;
+  height: 500px;
+  background-color: "FCA311";
+  border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+}
+html {
+  scroll-behavior: smooth;
+}
+
+.navbar-background{
+  background: rgba(111, 105, 105, 0.23);
+border-radius: 16px;
+box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+backdrop-filter: blur(7px);
+-webkit-backdrop-filter: blur(7px);
+border: 1px solid rgba(111, 105, 105, 0.3);
+
+
 }
