@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import cv from '../Assets/Aakash-Kandel-cv.pdf'
 import Button from './Base/Common/Button'
 import { ReactComponent as HeroSvg } from '../Assets/Svg/herosvg.svg'
@@ -13,9 +13,30 @@ import Education from './Education';
 import Contact from './Contact';
 import Footer from './Base/Footer';
 
-
 export default function Home() {
     const navigate = useNavigate()
+    const [animatedText, setAnimatedText] = useState('');
+    const fullText = "I build things for web";
+    
+    useEffect(() => {
+        let isMounted = true;
+        const animateText = () => {
+            for (let i = 0; i <= fullText.length; i++) {
+                setTimeout(() => {
+                    if (isMounted) {
+                        setAnimatedText(fullText.slice(0, i));
+                    }
+                }, 100 * i);
+            }
+        };
+
+        animateText();
+
+        return () => {
+            isMounted = false;
+        };
+    }, []);
+
     const downloadCV = () => {
         navigate(cv, { replace: true });
         window.location.reload();
@@ -31,7 +52,8 @@ export default function Home() {
                                 I'm <span className='text-secondary'>Aakash Kandel</span>.
                             </h1>
                             <p className=' sm:text-2xl mt-1 md:mt-2 font-medium'>
-                                I build things for web
+                                {animatedText}
+                                <span className="animate-pulse">|</span>
                             </p>
                             <p className='text-sm sm:text-base mt-4'>
                                 "Web developer and graphic designer creating innovative, user-centered digital solutions."
@@ -54,6 +76,7 @@ export default function Home() {
                 </div>
             </div>
 
+            {/* Rest of the component remains the same */}
             <div id="aboutme" className='bg-primary'>
                 <div className='max-screen flex flex-col md:flex-row justify-between'>
                     <div className='md:h-[450px] h-52 w-52 mx-auto md:w-[450px]'>
@@ -64,12 +87,11 @@ export default function Home() {
                             About Me
                         </h4>
                         <p className='text-sm text-tertiary sm:text-base text-justify mt-4'>
-                            "I’m a passionate web developer with experience in both frontend and backend development. I have a strong background in Java and enjoy creating dynamic, user-friendly websites and applications. Along with my coding skills, I also have a solid understanding of graphic design, allowing me to combine creativity with technical expertise to deliver innovative digital solutions."
+                            "I'm a passionate web developer with experience in both frontend and backend development. I have a strong background in Java and enjoy creating dynamic, user-friendly websites and applications. Along with my coding skills, I also have a solid understanding of graphic design, allowing me to combine creativity with technical expertise to deliver innovative digital solutions."
                         </p>
                     </div>
                 </div>
             </div>
-
 
             <div id="skill" className='bg-primary'>
                 <Skill />
