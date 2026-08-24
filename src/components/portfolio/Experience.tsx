@@ -3,13 +3,22 @@ import { Calendar, MapPin, ArrowRight } from 'lucide-react';
 
 const experiences = [
   {
+    title: 'Software Engineer',
+    company: 'Semantic Technology',
+    location: 'Kathmandu, Naxal',
+    period: 'August 2026 - Present',
+    description: 'Promoted to Software Engineer, leading Odoo ERP module development and customisation in Python, building React-based frontends integrated with Odoo APIs, designing backend modules, and managing portal development and project creation within Odoo.',
+    type: 'Full-time',
+    current: true,
+  },
+  {
     title: 'Associate Software Engineer',
     company: 'Semantic Technology',
     location: 'Kathmandu, Naxal',
-    period: 'March 2025 - Present',
-    description: 'Developing and customising Odoo ERP modules in Python, building React-based frontends integrated with Odoo APIs, designing backend modules, and managing portal development and project creation within Odoo.',
+    period: 'March 2025 - August 2026',
+    description: 'Developed and customised Odoo ERP modules in Python, built React-based frontends integrated with Odoo APIs, designed backend modules, and managed portal development and project creation within Odoo.',
     type: 'Full-time',
-    current: true,
+    current: false,
   },
   {
     title: 'Software Development Intern',
@@ -38,7 +47,7 @@ const Experience = () => {
             Work <span className="gradient-text">Experience</span>
           </h2>
           <p className="text-muted-foreground max-w-2xl mx-auto">
-            My professional journey from intern to associate software developer
+            My professional journey from intern to software engineer
           </p>
         </motion.div>
 
@@ -107,7 +116,16 @@ const Experience = () => {
                     <div className="mt-4 pt-4 border-t border-border">
                       <div className="flex items-center gap-2 text-accent text-sm font-medium">
                         <ArrowRight className="h-4 w-4" />
-                        Promoted from Intern to Associate Engineer
+                        Promoted from Associate Software Engineer to Software Engineer
+                      </div>
+                    </div>
+                  )}
+
+                  {index === 1 && (
+                    <div className="mt-4 pt-4 border-t border-border">
+                      <div className="flex items-center gap-2 text-accent text-sm font-medium">
+                        <ArrowRight className="h-4 w-4" />
+                        Promoted from Intern to Associate Software Engineer
                       </div>
                     </div>
                   )}

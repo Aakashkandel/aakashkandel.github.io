@@ -1,16 +1,35 @@
 import { motion } from 'framer-motion';
 import {
-  Github,
   MessageSquare,
   Store,
   Dumbbell,
   Stethoscope,
   Plug,
   Boxes,
+  ScanEye,
+  KanbanSquare,
 } from 'lucide-react';
-import { Button } from '@/components/ui/button';
 
 const projects = [
+  {
+    title: 'X-Ray Studio',
+    category: 'Odoo Developer Tool',
+    description:
+      'An Odoo developer extension that lets you hover over any field to instantly see the underlying Odoo default code, then jump straight to the exact line on Odoo GitHub with one click — making it far easier to trace and find code.',
+    technologies: ['Odoo', 'Python', 'JavaScript', 'GitHub'],
+    icon: ScanEye,
+    gradient: 'from-zinc-800 via-neutral-900 to-black',
+    featured: true,
+  },
+  {
+    title: 'Kanbanzo',
+    category: 'PERN Stack',
+    description:
+      'A project management platform for task management, planning, and analysis, built to give managers clear visibility and control over their team\'s work.',
+    technologies: ['PostgreSQL', 'Express', 'React', 'Node.js'],
+    icon: KanbanSquare,
+    gradient: 'from-neutral-800 via-zinc-900 to-black',
+  },
   {
     title: 'Akchatbox',
     category: 'MERN Stack',
@@ -19,8 +38,6 @@ const projects = [
     technologies: ['MongoDB', 'Express', 'React', 'Node.js', 'Socket.io'],
     icon: MessageSquare,
     gradient: 'from-zinc-700 via-zinc-800 to-black',
-    liveUrl: '#',
-    githubUrl: '#',
     featured: true,
   },
   {
@@ -31,8 +48,6 @@ const projects = [
     technologies: ['MongoDB', 'Express', 'React', 'Node.js'],
     icon: Store,
     gradient: 'from-neutral-800 via-neutral-900 to-black',
-    liveUrl: '#',
-    githubUrl: '#',
   },
   {
     title: 'Suravi — Doctor Consultation',
@@ -42,9 +57,6 @@ const projects = [
     technologies: ['Odoo', 'React', 'FastAPI', 'Python'],
     icon: Stethoscope,
     gradient: 'from-zinc-800 via-neutral-900 to-zinc-950',
-    liveUrl: '#',
-    githubUrl: '#',
-    hideGithub: true,
   },
   {
     title: 'Gym Supplement Store',
@@ -54,8 +66,6 @@ const projects = [
     technologies: ['Laravel', 'PHP', 'MySQL', 'Blade'],
     icon: Dumbbell,
     gradient: 'from-neutral-700 via-zinc-800 to-neutral-950',
-    liveUrl: '#',
-    githubUrl: '#',
   },
   {
     title: 'Odoo × FastAPI Integration',
@@ -65,8 +75,6 @@ const projects = [
     technologies: ['Odoo', 'FastAPI', 'Python', 'XML-RPC'],
     icon: Plug,
     gradient: 'from-zinc-900 via-black to-zinc-950',
-    liveUrl: '#',
-    githubUrl: '#',
     featured: true,
   },
   {
@@ -77,8 +85,6 @@ const projects = [
     technologies: ['Odoo', 'Python', 'PostgreSQL', 'QWeb'],
     icon: Boxes,
     gradient: 'from-neutral-800 via-zinc-900 to-black',
-    liveUrl: '#',
-    githubUrl: '#',
   },
 ];
 
@@ -148,17 +154,6 @@ const Projects = () => {
                       </span>
                     ))}
                   </div>
-
-                  {!project.hideGithub && (
-                    <div className="flex gap-3 mt-auto">
-                      <Button variant="outline" size="sm" className="gap-2 rounded-full flex-1" asChild>
-                        <a href={project.githubUrl} target="_blank" rel="noopener noreferrer">
-                          <Github className="h-4 w-4" />
-                          View Code
-                        </a>
-                      </Button>
-                    </div>
-                  )}
                 </div>
               </motion.div>
             );
