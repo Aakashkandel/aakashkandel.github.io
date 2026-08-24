@@ -1,52 +1,229 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Roboto:wght@400;700&display=swap');
+@layer base {
+  :root {
+    /* Light mode — premium black & white with a violet accent */
+    --background: 0 0% 100%;
+    --foreground: 0 0% 6%;
 
-body {
-  margin: 0;
-  font-family: 'Roboto', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+    --card: 0 0% 99%;
+    --card-foreground: 0 0% 6%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 6%;
+
+    --primary: 0 0% 7%;
+    --primary-foreground: 0 0% 98%;
+
+    --secondary: 0 0% 95%;
+    --secondary-foreground: 0 0% 7%;
+
+    --muted: 0 0% 95%;
+    --muted-foreground: 0 0% 40%;
+
+    /* Selective color accent */
+    --accent: 256 78% 54%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 0 0% 90%;
+    --input: 0 0% 90%;
+    --ring: 256 78% 54%;
+
+    --radius: 0.85rem;
+
+    --gradient-start: 256 85% 60%;
+    --gradient-end: 292 84% 60%;
+  }
+
+  .dark {
+    /* Dark mode — deep black, crisp white, violet accent */
+    --background: 0 0% 4%;
+    --foreground: 0 0% 96%;
+
+    --card: 0 0% 8%;
+    --card-foreground: 0 0% 96%;
+
+    --popover: 0 0% 6%;
+    --popover-foreground: 0 0% 96%;
+
+    --primary: 0 0% 98%;
+    --primary-foreground: 0 0% 6%;
+
+    --secondary: 0 0% 13%;
+    --secondary-foreground: 0 0% 96%;
+
+    --muted: 0 0% 14%;
+    --muted-foreground: 0 0% 62%;
+
+    --accent: 256 92% 72%;
+    --accent-foreground: 0 0% 6%;
+
+    --destructive: 0 62% 50%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 0 0% 16%;
+    --input: 0 0% 16%;
+    --ring: 256 92% 72%;
+
+    --gradient-start: 256 92% 72%;
+    --gradient-end: 292 90% 70%;
+  }
 }
 
-code {
-  font-family: 'Source Code Pro', Menlo, Monaco, Consolas, 'Courier New', monospace;
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+    font-family: 'Inter', sans-serif;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Space Grotesk', sans-serif;
+    letter-spacing: -0.02em;
+  }
+
+  ::selection {
+    @apply bg-accent text-accent-foreground;
+  }
+
+  /* Custom scrollbar */
+  ::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+  ::-webkit-scrollbar-track {
+    background: hsl(var(--background));
+  }
+  ::-webkit-scrollbar-thumb {
+    background: hsl(var(--accent) / 0.5);
+    border-radius: 9999px;
+    border: 2px solid hsl(var(--background));
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: hsl(var(--accent) / 0.8);
+  }
 }
 
-.body-container {
-  max-width: 1200px;  
-  height: 100vh;        
-  margin:auto;     
-  padding: 50px 10px;   
-  box-sizing: border-box;
-}
-.max-screen{
-  max-width: 1200px;  
-  margin:auto;        
-  box-sizing: border-box;
+@keyframes gradient-pan {
+  0% {
+    background-position: 0% 50%;
+  }
+  100% {
+    background-position: 200% 50%;
+  }
 }
 
-.rounded-egg {
-  display: block;
-  width: 400px;
-  height: 500px;
-  background-color: "FCA311";
-  border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
-}
-html {
-  scroll-behavior: smooth;
-}
+@layer utilities {
+  /* Highlighted heading words — white fading into the violet accent */
+  .gradient-text {
+    @apply bg-gradient-to-r from-foreground via-foreground to-accent bg-clip-text text-transparent;
+  }
 
-.navbar-background{
-  background: rgba(111, 105, 105, 0.23);
-border-radius: 16px;
-box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-backdrop-filter: blur(7px);
--webkit-backdrop-filter: blur(7px);
-border: 1px solid rgba(111, 105, 105, 0.3);
+  /* Fully colored animated gradient (for the name) */
+  .gradient-text-animated {
+    background: linear-gradient(
+      120deg,
+      hsl(var(--gradient-start)),
+      hsl(var(--gradient-end)),
+      hsl(var(--gradient-start))
+    );
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: gradient-pan 6s linear infinite;
+  }
 
+  /* Colored gradient fill (Odoo hub, monogram, etc.) */
+  .gradient-bg {
+    background-image: linear-gradient(
+      135deg,
+      hsl(var(--gradient-start)),
+      hsl(var(--gradient-end))
+    );
+  }
 
+  .glass {
+    @apply backdrop-blur-xl bg-background/70 supports-[backdrop-filter]:bg-background/60;
+  }
+
+  .glass-card {
+    @apply backdrop-blur-xl bg-card/60 border border-border/70;
+  }
+
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  /* Subtle dotted grid background */
+  .bg-grid {
+    background-image: radial-gradient(
+      hsl(var(--foreground) / 0.07) 1px,
+      transparent 1px
+    );
+    background-size: 28px 28px;
+  }
+
+  .bg-grid-fade {
+    -webkit-mask-image: radial-gradient(ellipse 70% 60% at 50% 40%, #000 50%, transparent 100%);
+    mask-image: radial-gradient(ellipse 70% 60% at 50% 40%, #000 50%, transparent 100%);
+  }
+
+  /* Image fade — solid on the right, fading away to the left + soft bottom */
+  .mask-fade-l {
+    -webkit-mask-image: linear-gradient(to right, transparent 0%, #000 38%),
+      linear-gradient(to top, transparent 0%, #000 22%);
+    -webkit-mask-composite: source-in;
+    mask-image: linear-gradient(to right, transparent 0%, #000 38%),
+      linear-gradient(to top, transparent 0%, #000 22%);
+    mask-composite: intersect;
+  }
+
+  /* Image fade — solid at the top, dissolving toward the bottom */
+  .mask-fade-b {
+    -webkit-mask-image: linear-gradient(to top, transparent 0%, #000 30%);
+    mask-image: linear-gradient(to top, transparent 0%, #000 30%);
+  }
+
+  /* Understated glow with a hint of accent */
+  .glow {
+    box-shadow: 0 1px 0 0 hsl(var(--foreground) / 0.06),
+      0 18px 55px -22px hsl(var(--accent) / 0.5);
+  }
+
+  /* Accent gradient border card */
+  .border-gradient {
+    position: relative;
+  }
+  .border-gradient::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    padding: 1px;
+    background: linear-gradient(
+      135deg,
+      hsl(var(--accent) / 0.6),
+      transparent 45%,
+      hsl(var(--foreground) / 0.2)
+    );
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events: none;
+  }
 }
